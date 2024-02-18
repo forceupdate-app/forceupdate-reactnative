@@ -8,6 +8,8 @@ export interface IForceUpdateModal {
   title: string;
   update_button_text: string;
   onForceUpdate: (() => void) | null;
+  children: React.ReactNode;
+  showAppBackground: boolean;
 }
 
 export const ForceUpdateModal: React.FC<IForceUpdateModal> = ({
@@ -16,6 +18,8 @@ export const ForceUpdateModal: React.FC<IForceUpdateModal> = ({
   update_button_text,
   store_url,
   onForceUpdate,
+  children,
+  showAppBackground,
 }) => {
   const handleUpdate = useCallback(() => {
     Linking.openURL(store_url);
@@ -34,7 +38,9 @@ export const ForceUpdateModal: React.FC<IForceUpdateModal> = ({
           style: 'default',
         },
       ]}
-    />
+    >
+      {showAppBackground ? children : null}
+    </CustomModal>
   );
 };
 

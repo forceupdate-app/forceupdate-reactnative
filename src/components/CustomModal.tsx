@@ -7,12 +7,14 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
+import { AppBackgroundView } from './AppBackgroundView';
 
 export interface IButton {
   text: string;
   onPress: () => void;
   isPreferred?: boolean;
   style?: 'default' | 'cancel';
+  children?: React.ReactNode;
 }
 
 export interface IModal {
@@ -23,33 +25,41 @@ export interface IModal {
 
 const windowWidth = Dimensions.get('window').width;
 
-export const CustomModal: React.FC<IModal> = ({ message, title, buttons }) => {
+export const CustomModal: React.FC<IModal> = ({
+  message,
+  title,
+  buttons,
+  children,
+}) => {
   return (
-    <Modal
-      visible={true}
-      animationType="fade"
-      transparent={true}
-      testID="custom-modal"
-    >
-      <View style={styles.modalBackground}>
-        <View style={styles.alertBox}>
-          <View style={styles.box}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.message}>{message}</Text>
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.buttonBox}>
-            {buttons.map((button, index) => (
-              <Button
-                key={index}
-                title={button.text}
-                onPress={button.onPress}
-              />
-            ))}
+    <>
+      {children && <AppBackgroundView>{children}</AppBackgroundView>}
+      <Modal
+        visible={true}
+        animationType="fade"
+        transparent={true}
+        testID="custom-modal"
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.alertBox}>
+            <View style={styles.box}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.message}>{message}</Text>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.buttonBox}>
+              {buttons.map((button, index) => (
+                <Button
+                  key={index}
+                  title={button.text}
+                  onPress={button.onPress}
+                />
+              ))}
+            </View>
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 
@@ -89,5 +99,8 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'lightgray',
     marginVertical: 10,
+  },
+  testID: {
+    flex: 1,
   },
 });

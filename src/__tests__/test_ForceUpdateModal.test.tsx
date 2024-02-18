@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { Alert, Linking } from 'react-native';
 import { ForceUpdateModal } from '../components/ForceUpdateModal';
+import { Text } from 'react-native';
 
 jest.mock('react-native/Libraries/Linking/Linking', () => ({
   openURL: jest.fn(),
@@ -33,7 +34,10 @@ describe('ForceUpdateModal', () => {
         update_button_text="Update Now"
         store_url={storeUrl}
         onForceUpdate={mockOnForceUpdate}
-      />
+        showAppBackground
+      >
+        <Text>App background</Text>
+      </ForceUpdateModal>
     );
 
     fireEvent.press(getByText('Update Now'));
@@ -52,7 +56,10 @@ describe('ForceUpdateModal', () => {
           update_button_text="Update Now"
           store_url={storeUrl}
           onForceUpdate={() => {}}
-        />
+          showAppBackground
+        >
+          <Text>App background</Text>
+        </ForceUpdateModal>
       );
 
       fireEvent.press(getByText('Update Now'));
@@ -71,12 +78,51 @@ describe('ForceUpdateModal', () => {
         update_button_text="Update Now"
         store_url={storeUrl}
         onForceUpdate={() => {}}
-      />
+        showAppBackground
+      >
+        <Text>App background</Text>
+      </ForceUpdateModal>
     );
 
     fireEvent.press(getByText('Update Now'));
 
     expect(Linking.openURL).toHaveBeenCalledWith(storeUrl);
     expect(mockOnForceUpdate).not.toHaveBeenCalled();
+  });
+
+  it('the background of app should appear if the property "showAppBackground" is true', () => {
+    const storeUrl = 'https://example.com';
+    const { getByTestId } = render(
+      <ForceUpdateModal
+        message="Update available"
+        title="Update"
+        update_button_text="Update Now"
+        store_url={storeUrl}
+        onForceUpdate={mockOnForceUpdate}
+        showAppBackground
+      >
+        <Text>App background</Text>
+      </ForceUpdateModal>
+    );
+
+    expect(getByTestId('app-background')).toBeTruthy();
+  });
+
+  it('the background of app should not appear if the property "showAppBackground" is false', () => {
+    const storeUrl = 'https://example.com';
+    const { queryByTestId } = render(
+      <ForceUpdateModal
+        message="Update available"
+        title="Update"
+        update_button_text="Update Now"
+        store_url={storeUrl}
+        onForceUpdate={mockOnForceUpdate}
+        showAppBackground={false}
+      >
+        <Text>App background</Text>
+      </ForceUpdateModal>
+    );
+
+    expect(queryByTestId('app-background')).toBeNull();
   });
 });

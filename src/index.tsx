@@ -12,6 +12,7 @@ interface IForceUpdate {
   platform: 'ANDROID' | 'IOS';
   version: string;
   children: React.ReactNode;
+  showAppBackground?: boolean;
   onDismiss?: () => void;
   onForceUpdate?: () => void;
   onUpdate?: () => void;
@@ -31,6 +32,7 @@ export const ForceUpdate: React.FC<IForceUpdate> = ({
   platform,
   version,
   children,
+  showAppBackground = true,
   ...props
 }: IForceUpdate) => {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
@@ -109,7 +111,10 @@ export const ForceUpdate: React.FC<IForceUpdate> = ({
         title={apiResponse.title}
         update_button_text={apiResponse.update_button_text}
         onForceUpdate={onForceUpdate ? onForceUpdate : null}
-      />
+        showAppBackground={showAppBackground}
+      >
+        {children}
+      </ForceUpdateModal>
     );
   }
 
@@ -123,7 +128,10 @@ export const ForceUpdate: React.FC<IForceUpdate> = ({
         dismiss_button_text={apiResponse.dismiss_button_text}
         onUpdate={onUpdate ? onUpdate : null}
         onDismiss={onDismiss ? onDismiss : null}
-      />
+        showAppBackground={showAppBackground}
+      >
+        {children}
+      </UpdateModal>
     );
   }
 

@@ -11,6 +11,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { Alert, Linking } from 'react-native';
 import UpdateModal from '../components/UpdateModal';
+import { Text } from 'react-native';
 
 jest.mock('react-native/Libraries/Linking/Linking', () => ({
   openURL: jest.fn(),
@@ -47,7 +48,9 @@ describe('UpdateModal', () => {
         dismiss_button_text="Dismiss"
         onDismiss={mockOnDismiss}
         onUpdate={mockOnUpdate}
-      />
+      >
+        <Text>App background</Text>
+      </UpdateModal>
     );
 
     (global as any).dismissButtonOnPress();
@@ -67,11 +70,53 @@ describe('UpdateModal', () => {
         dismiss_button_text="Dismiss"
         onDismiss={mockOnDismiss}
         onUpdate={mockOnUpdate}
-      />
+      >
+        <Text>App background</Text>
+      </UpdateModal>
     );
 
     (global as any).updateButtonOnPress();
 
     expect(mockOnDismiss).toHaveBeenCalledTimes(1);
+  });
+
+  it('the background of app should appear if the property "showAppBackground" is true', () => {
+    const storeUrl = 'https://example.com';
+    const { getByTestId } = render(
+      <UpdateModal
+        message="Update available"
+        store_url={storeUrl}
+        title="Update"
+        update_button_text="Update Now"
+        dismiss_button_text="Dismiss"
+        onDismiss={mockOnDismiss}
+        onUpdate={mockOnUpdate}
+        showAppBackground={true}
+      >
+        <Text>App background</Text>
+      </UpdateModal>
+    );
+
+    expect(getByTestId('app-background')).toBeTruthy();
+  });
+
+  it('the background of app should not appear if the property "showAppBackground" is false', () => {
+    const storeUrl = 'https://example.com';
+    const { queryByTestId } = render(
+      <UpdateModal
+        message="Update available"
+        store_url={storeUrl}
+        title="Update"
+        update_button_text="Update Now"
+        dismiss_button_text="Dismiss"
+        onDismiss={mockOnDismiss}
+        onUpdate={mockOnUpdate}
+        showAppBackground={false}
+      >
+        <Text>App background</Text>
+      </UpdateModal>
+    );
+
+    expect(queryByTestId('app-background')).toBeNull();
   });
 });

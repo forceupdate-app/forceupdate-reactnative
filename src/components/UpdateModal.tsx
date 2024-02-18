@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Alert, Linking } from 'react-native';
+import { AppBackgroundView } from './AppBackgroundView';
 
 interface IUpdateModal {
   message: string;
@@ -9,6 +10,8 @@ interface IUpdateModal {
   dismiss_button_text: string;
   onUpdate: (() => void) | null;
   onDismiss: (() => void) | null;
+  showAppBackground?: boolean;
+  children: React.ReactNode;
 }
 
 export const UpdateModal: React.FC<IUpdateModal> = ({
@@ -19,6 +22,8 @@ export const UpdateModal: React.FC<IUpdateModal> = ({
   dismiss_button_text,
   onDismiss,
   onUpdate,
+  showAppBackground = true,
+  children,
 }) => {
   const handleUpdate = useCallback(() => {
     onUpdate && onUpdate();
@@ -57,6 +62,10 @@ export const UpdateModal: React.FC<IUpdateModal> = ({
     title,
     update_button_text,
   ]);
+
+  if (showAppBackground) {
+    return <AppBackgroundView>{children}</AppBackgroundView>;
+  }
 
   return null;
 };

@@ -785,4 +785,121 @@ describe('ForceUpdate', () => {
       );
     });
   });
+
+  it('the background of app should appear if the property "showAppBackground" is not informed', async () => {
+    const apiResponse = {
+      needs_update: true,
+      message: 'Update available',
+      store_url: 'https://example.com',
+      title: 'Update',
+      update_button_text: 'Update Now',
+      dismiss_button_text: 'Dismiss',
+    };
+    (fetchData as jest.Mock).mockResolvedValueOnce(apiResponse);
+
+    const { getByTestId } = render(
+      <ForceUpdate
+        api_key="API_KEY"
+        language="en"
+        platform="IOS"
+        version="1.0.0"
+        onLoadingStart={mockOnLoadingStart}
+        onLoadingEnd={mockOnLoadingEnd}
+        onVersionCheckSuccess={mockOnVersionCheckSuccess}
+        onVersionCheckError={mockOnVersionCheckError}
+        onForceUpdate={mockOnForceUpdate}
+        onUpdate={mockOnUpdate}
+      >
+        <Text>Some text</Text>
+      </ForceUpdate>
+    );
+
+    await waitFor(
+      () => {
+        expect(getByTestId('app-background')).toBeTruthy();
+      },
+      {
+        timeout: TIMEOUT,
+      }
+    );
+  });
+
+  it('the background of app should appear if the property "showAppBackground" is true', async () => {
+    const apiResponse = {
+      needs_update: true,
+      message: 'Update available',
+      store_url: 'https://example.com',
+      title: 'Update',
+      update_button_text: 'Update Now',
+      dismiss_button_text: 'Dismiss',
+    };
+    (fetchData as jest.Mock).mockResolvedValueOnce(apiResponse);
+
+    const { getByTestId } = render(
+      <ForceUpdate
+        api_key="API_KEY"
+        language="en"
+        platform="IOS"
+        version="1.0.0"
+        onLoadingStart={mockOnLoadingStart}
+        onLoadingEnd={mockOnLoadingEnd}
+        onVersionCheckSuccess={mockOnVersionCheckSuccess}
+        onVersionCheckError={mockOnVersionCheckError}
+        onForceUpdate={mockOnForceUpdate}
+        onUpdate={mockOnUpdate}
+        showAppBackground
+      >
+        <Text>Some text</Text>
+      </ForceUpdate>
+    );
+
+    await waitFor(
+      () => {
+        expect(getByTestId('app-background')).toBeTruthy();
+      },
+      {
+        timeout: TIMEOUT,
+      }
+    );
+  });
+
+  it('the background of app should not appear if the property "showAppBackground" is false', async () => {
+    const apiResponse = {
+      needs_update: true,
+      force_update: true,
+      message: 'Update available',
+      store_url: 'https://example.com',
+      title: 'Update',
+      update_button_text: 'Update Now',
+      dismiss_button_text: 'Dismiss',
+    };
+    (fetchData as jest.Mock).mockResolvedValueOnce(apiResponse);
+
+    const { queryByTestId } = render(
+      <ForceUpdate
+        api_key="API_KEY"
+        language="en"
+        platform="IOS"
+        version="1.0.0"
+        onLoadingStart={mockOnLoadingStart}
+        onLoadingEnd={mockOnLoadingEnd}
+        onVersionCheckSuccess={mockOnVersionCheckSuccess}
+        onVersionCheckError={mockOnVersionCheckError}
+        onForceUpdate={mockOnForceUpdate}
+        onUpdate={mockOnUpdate}
+        showAppBackground={false}
+      >
+        <Text>Some text</Text>
+      </ForceUpdate>
+    );
+
+    await waitFor(
+      () => {
+        expect(queryByTestId('app-background')).toBeNull();
+      },
+      {
+        timeout: TIMEOUT,
+      }
+    );
+  });
 });

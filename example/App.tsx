@@ -23,11 +23,11 @@ const App: React.FC = () => {
   return (
     <ForceUpdate
       api_key={
-        '6bbc51d23e5938d512a62a83c230dfdef89ab7a2c75bdc1f0f42909d5e04feb5'
+        'ad3436a2f959c7ec179ee4fe8842020ad77f7fe16ab26ad46d6e453863c5b4d8'
       }
       language={'en'}
-      platform={'ANDROID'}
-      version={'3.0.2'}
+      platform={'IOS'}
+      version={'1.0.1'}
     >
       <View style={styles.container}>
         <FlatList
