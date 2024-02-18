@@ -57,6 +57,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   build-library:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -69,6 +70,7 @@ jobs:
         run: yarn prepare
 
   build-web:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -80,3 +82,24 @@ jobs:
       - name: Build example for Web
         run: |
           yarn example expo export:web
+
+  release:
+    needs: [build-library, build-web]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: NPM config
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        run: yarn release --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
