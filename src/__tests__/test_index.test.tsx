@@ -19,12 +19,12 @@ describe('ForceUpdate', () => {
   const mockOnUpdate = jest.fn();
   const mockOnDismiss = jest.fn();
 
-  beforeAll(() => {
-    jest.setTimeout(30);
-  });
-
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  beforeEach(() => {
+    jest.setTimeout(60000);
   });
 
   it('should render LoadingComponent while fetching data', async () => {
