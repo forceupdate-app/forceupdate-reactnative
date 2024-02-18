@@ -1,4 +1,4 @@
-import { fetchData } from '/Users/joaomantovani/projects/forceupdate/forceupdate-reactnative/src/services/fetchdata';
+import { fetchData } from '../services/fetchdata';
 
 const ENDPOINT = `http://localhost:8080/check-version`;
 
