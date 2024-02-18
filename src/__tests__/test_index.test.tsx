@@ -19,6 +19,10 @@ describe('ForceUpdate', () => {
   const mockOnUpdate = jest.fn();
   const mockOnDismiss = jest.fn();
 
+  beforeAll(() => {
+    jest.setTimeout(TIMEOUT);
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
