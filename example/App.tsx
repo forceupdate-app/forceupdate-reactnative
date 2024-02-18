@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { ForceUpdate } from 'reactnative-forceupdate';
 
 interface ListItem {
@@ -27,10 +27,11 @@ const App: React.FC = () => {
       }
       language={'en'}
       platform={'ANDROID'}
-      version={'1.0.2'}
+      version={'3.0.2'}
     >
-      <View>
+      <View style={styles.container}>
         <FlatList
+          contentContainerStyle={styles.list}
           data={data}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
@@ -39,5 +40,18 @@ const App: React.FC = () => {
     </ForceUpdate>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#39cb31',
+  },
+  list: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+  },
+});
 
 export default App;
