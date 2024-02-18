@@ -20,7 +20,7 @@ describe('ForceUpdate', () => {
   const mockOnDismiss = jest.fn();
 
   beforeAll(() => {
-    jest.setTimeout(TIMEOUT);
+    jest.setTimeout(30);
   });
 
   afterEach(() => {
