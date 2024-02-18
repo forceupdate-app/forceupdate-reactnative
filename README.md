@@ -92,6 +92,14 @@ These properties are required when instantiating the `ForceUpdate` component.
 | Api_key   | The API key of your project. You can get it on your forceupdate.app dashboard   |
 | Language  | The language of the message. The same defined on your forceupdate.app dashboard |
 
+### Optional props (Customization)
+
+These are the optional props that you can use to customize the modal.
+
+| Parameter         | Explanation                                          | Context       | Default value |
+| ----------------- | ---------------------------------------------------- | ------------- | ------------- |
+| showAppBackground | Show the app background behind the forceupdate modal | true or false | true          |
+
 ### Optional props (Callbacks)
 
 These are the optional props that you can use to handle the modal events.
