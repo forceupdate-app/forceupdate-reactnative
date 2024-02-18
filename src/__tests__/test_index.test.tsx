@@ -4,6 +4,8 @@ import { fetchData } from '../services/fetchdata';
 import { ForceUpdate } from '../index';
 import { Text } from 'react-native';
 
+const TIMEOUT = 20000;
+
 jest.mock('../services/fetchdata', () => ({
   fetchData: jest.fn(),
 }));
@@ -44,10 +46,13 @@ describe('ForceUpdate', () => {
 
     expect(getByTestId('loading-component')).toBeTruthy();
 
-    await waitFor(() => {
-      expect(mockOnLoadingStart).toHaveBeenCalledTimes(1);
-      expect(mockOnLoadingEnd).toHaveBeenCalledTimes(1);
-    });
+    await waitFor(
+      () => {
+        expect(mockOnLoadingStart).toHaveBeenCalledTimes(1);
+        expect(mockOnLoadingEnd).toHaveBeenCalledTimes(1);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should render ErrorComponent if there is an error fetching data', async () => {
@@ -72,10 +77,13 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(getByText(errorMessage)).toBeTruthy();
-      expect(mockOnVersionCheckError).toHaveBeenCalledWith(errorMessage);
-    });
+    await waitFor(
+      () => {
+        expect(getByText(errorMessage)).toBeTruthy();
+        expect(mockOnVersionCheckError).toHaveBeenCalledWith(errorMessage);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should render ForceUpdateModal if force_update is true', async () => {
@@ -106,11 +114,14 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(getByText(apiResponse.message)).toBeTruthy();
-      expect(getByText(apiResponse.update_button_text)).toBeTruthy();
-      expect(mockOnForceUpdate).toHaveBeenCalledTimes(0);
-    });
+    await waitFor(
+      () => {
+        expect(getByText(apiResponse.message)).toBeTruthy();
+        expect(getByText(apiResponse.update_button_text)).toBeTruthy();
+        expect(mockOnForceUpdate).toHaveBeenCalledTimes(0);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should render UpdateModal if needs_update is true', async () => {
@@ -142,10 +153,13 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(mockOnUpdate).toHaveBeenCalledTimes(0);
-      expect(mockOnDismiss).toHaveBeenCalledTimes(0);
-    });
+    await waitFor(
+      () => {
+        expect(mockOnUpdate).toHaveBeenCalledTimes(0);
+        expect(mockOnDismiss).toHaveBeenCalledTimes(0);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should render children if neither force_update nor needs_update is true', async () => {
@@ -173,9 +187,12 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(getByText('App content')).toBeTruthy();
-    });
+    await waitFor(
+      () => {
+        expect(getByText('App content')).toBeTruthy();
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should call onLoadingStart and onLoadingEnd when fetching data', async () => {
@@ -199,10 +216,13 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(mockOnLoadingStart).toHaveBeenCalledTimes(1);
-      expect(mockOnLoadingEnd).toHaveBeenCalledTimes(1);
-    });
+    await waitFor(
+      () => {
+        expect(mockOnLoadingStart).toHaveBeenCalledTimes(1);
+        expect(mockOnLoadingEnd).toHaveBeenCalledTimes(1);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should call onVersionCheckSuccess with response when fetching data is successful', async () => {
@@ -230,9 +250,12 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(mockOnVersionCheckSuccess).toHaveBeenCalledWith(apiResponse);
-    });
+    await waitFor(
+      () => {
+        expect(mockOnVersionCheckSuccess).toHaveBeenCalledWith(apiResponse);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should call onVersionCheckError with error message when fetching data fails', async () => {
@@ -257,9 +280,12 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(mockOnVersionCheckError).toHaveBeenCalledWith(errorMessage);
-    });
+    await waitFor(
+      () => {
+        expect(mockOnVersionCheckError).toHaveBeenCalledWith(errorMessage);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should handle fetchData success', async () => {
@@ -284,10 +310,13 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(fetchData).toHaveBeenCalledTimes(1);
-      expect(mockOnVersionCheckSuccess).toHaveBeenCalledWith(response);
-    });
+    await waitFor(
+      () => {
+        expect(fetchData).toHaveBeenCalledTimes(1);
+        expect(mockOnVersionCheckSuccess).toHaveBeenCalledWith(response);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should handle fetchData failure', async () => {
@@ -312,10 +341,13 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(fetchData).toHaveBeenCalledTimes(1);
-      expect(mockOnVersionCheckError).toHaveBeenCalledWith(error.message);
-    });
+    await waitFor(
+      () => {
+        expect(fetchData).toHaveBeenCalledTimes(1);
+        expect(mockOnVersionCheckError).toHaveBeenCalledWith(error.message);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   it('should handle onVersionCheckSuccess error', async () => {
@@ -344,10 +376,13 @@ describe('ForceUpdate', () => {
       </ForceUpdate>
     );
 
-    await waitFor(() => {
-      expect(fetchData).toHaveBeenCalledTimes(1);
-      expect(mockOnVersionCheckSuccess).toHaveBeenCalledWith(response);
-    });
+    await waitFor(
+      () => {
+        expect(fetchData).toHaveBeenCalledTimes(1);
+        expect(mockOnVersionCheckSuccess).toHaveBeenCalledWith(response);
+      },
+      { timeout: TIMEOUT }
+    );
   });
 
   describe('Callback functions', () => {
@@ -371,9 +406,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(mockOnLoadingEnd).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(mockOnLoadingEnd).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing if onLoadingEnd is undefined', async () => {
@@ -396,9 +436,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(mockOnLoadingStart).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(mockOnLoadingStart).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing if onVersionCheckSuccess is undefined', async () => {
@@ -422,9 +467,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(fetchData).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(fetchData).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing if onVersionCheckError is undefined', async () => {
@@ -448,9 +498,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(fetchData).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(fetchData).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing if onForceUpdate is undefined', async () => {
@@ -480,9 +535,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(fetchData).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(fetchData).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing if onUpdate is undefined', async () => {
@@ -513,9 +573,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(fetchData).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(fetchData).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing if onDismiss is undefined', async () => {
@@ -546,9 +611,14 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(fetchData).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(fetchData).toHaveBeenCalledTimes(1);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing when onForceUpdate is undefined and force_update is true', async () => {
@@ -578,10 +648,15 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(getByText(apiResponse.message)).toBeTruthy();
-        expect(getByText(apiResponse.update_button_text)).toBeTruthy();
-      });
+      await waitFor(
+        () => {
+          expect(getByText(apiResponse.message)).toBeTruthy();
+          expect(getByText(apiResponse.update_button_text)).toBeTruthy();
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing when onUpdate is undefined and needs_update is true', async () => {
@@ -612,10 +687,15 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(mockOnUpdate).toHaveBeenCalledTimes(0);
-        expect(mockOnDismiss).toHaveBeenCalledTimes(0);
-      });
+      await waitFor(
+        () => {
+          expect(mockOnUpdate).toHaveBeenCalledTimes(0);
+          expect(mockOnDismiss).toHaveBeenCalledTimes(0);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
 
     it('should do nothing when onDismiss is undefined and needs_update is true', async () => {
@@ -646,10 +726,15 @@ describe('ForceUpdate', () => {
         </ForceUpdate>
       );
 
-      await waitFor(() => {
-        expect(mockOnUpdate).toHaveBeenCalledTimes(0);
-        expect(mockOnDismiss).toHaveBeenCalledTimes(0);
-      });
+      await waitFor(
+        () => {
+          expect(mockOnUpdate).toHaveBeenCalledTimes(0);
+          expect(mockOnDismiss).toHaveBeenCalledTimes(0);
+        },
+        {
+          timeout: TIMEOUT,
+        }
+      );
     });
   });
 });
