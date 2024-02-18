@@ -2,6 +2,20 @@
 
 A lightweight React Native package for enforcing app version updates. Ensure users always have the latest enhancements and fixes without dependencies.
 
+<div align="center">
+
+[![npm](https://img.shields.io/npm/dt/reactnative-forceupdate?style=for-the-badge)](https://www.npmjs.com/package/reactnative-forceupdate)
+<br />
+[![npm version](https://badge.fury.io/js/reactnative-forceupdate.svg)](https://badge.fury.io/js/reactnative-forceupdate)
+[![Coverage Status](https://coveralls.io/repos/github/forceupdate-app/forceupdate-reactnative/badge.svg?branch=main)](https://coveralls.io/github/forceupdate-app/forceupdate-reactnative?branch=main)
+[![License Status](https://img.shields.io/github/license/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/license/forceupdate-app/forceupdate-reactnative)
+[![Issues Status](https://img.shields.io/github/issues/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/issues/forceupdate-app/forceupdate-reactnative)
+[![Tag Status](https://img.shields.io/github/v/tag/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/v/tag/forceupdate-app/forceupdate-reactnative)
+[![Languages Status](https://img.shields.io/github/languages/count/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/languages/count/forceupdate-app/forceupdate-reactnative)
+[![Repo Size Status](https://img.shields.io/github/repo-size/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/repo-size/forceupdate-app/forceupdate-reactnative)
+
+</div>
+
 ## Features
 
 - Enforce app version updates for Android and iOS
@@ -15,20 +29,6 @@ A lightweight React Native package for enforcing app version updates. Ensure use
 - Support for multiple languages
 - Support for multiple platforms
 - A completed [SAAS](https://forceupdate.app) to manage your versions
-
-<div align="center">
-
-![npm](https://img.shields.io/npm/dt/forceupdate-reactnative?style=for-the-badge)<br>
-[![npm version](https://badge.fury.io/js/forceupdate-reactnative.svg)](https://badge.fury.io/js/forceupdate-reactnative)
-![test](https://github.com/forceupdate-app/forceupdate-reactnative/workflows/test/badge.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/forceupdate-app/forceupdate-reactnative/badge.svg?branch=main)](https://coveralls.io/github/forceupdate-app/forceupdate-reactnative?branch=main)
-[![License Status](https://img.shields.io/github/license/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/license/forceupdate-app/forceupdate-reactnative)
-[![Issues Status](https://img.shields.io/github/issues/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/issues/forceupdate-app/forceupdate-reactnative)
-[![Tag Status](https://img.shields.io/github/v/tag/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/v/tag/forceupdate-app/forceupdate-reactnative)
-[![Languages Status](https://img.shields.io/github/languages/count/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/languages/count/forceupdate-app/forceupdate-reactnative)
-[![Repo Size Status](https://img.shields.io/github/repo-size/forceupdate-app/forceupdate-reactnative)](https://img.shields.io/github/repo-size/forceupdate-app/forceupdate-reactnative)
-
-</div>
 
 ## Creating an account
 

@@ -7,6 +7,7 @@
   "types": "lib/typescript/src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
+  "license": "MIT",
   "files": [
     "src",
     "lib",
@@ -45,7 +46,6 @@
     "url": "git+https://github.com/forceupdate-app/reactnative-forceupdate.git"
   },
   "author": "forceupdate <contact@forceupdate.app> (https://github.com/forceupdate-app)",
-  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/forceupdate-app/reactnative-forceupdate/issues"
   },
