@@ -21,7 +21,9 @@ export interface IErrorResponse {
   statusCode: number;
 }
 
-const ENDPOINT = `http://localhost:8080/check-version`;
+const VERSION = 'v1';
+const PATH = 'check-version';
+const ENDPOINT = `https://api.forceupdate.app/${VERSION}/${PATH}`;
 
 export async function fetchData({
   version,

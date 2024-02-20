@@ -1,6 +1,6 @@
 import { fetchData } from '../services/fetchdata';
 
-const ENDPOINT = `http://localhost:8080/check-version`;
+const ENDPOINT = `https://api.forceupdate.app/v1/check-version`;
 
 describe('fetchData', () => {
   it('should return the data when the response is successful', async () => {
