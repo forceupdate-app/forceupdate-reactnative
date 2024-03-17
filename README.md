@@ -174,8 +174,8 @@ And then use it like this:
 import { Platform } from 'react-native';
 // ...
 const version = DeviceInfo.getVersion();
-const platform = Platform.OS === 'ios' ? 'IOS' : 'ANDROID';
 const language = 'en'; // or get it from any library like I18n
+const platform = Platform.OS === 'ios' ? 'IOS' : 'ANDROID';
 const apiKey =
   'd723422430af5a6081a95be021dc7437bb5c74ec0648ef818e4d148f928e7043';
 
