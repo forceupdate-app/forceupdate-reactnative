@@ -177,7 +177,7 @@ const version = DeviceInfo.getVersion();
 const platform = Platform.OS === 'ios' ? 'IOS' : 'ANDROID';
 const language = 'en'; // or get it from any library like I18n
 const apiKey =
-  '6bbc51d23e5938d512a62a83c230dfdef89ab7a2c75bdc1f0f42909d5e04feb5';
+  'd723422430af5a6081a95be021dc7437bb5c74ec0648ef818e4d148f928e7043';
 
 return (
   <ForceUpdate
