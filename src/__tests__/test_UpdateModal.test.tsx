@@ -55,8 +55,7 @@ describe('UpdateModal', () => {
 
     (global as any).dismissButtonOnPress();
 
-    expect(Linking.openURL).toHaveBeenCalledWith(storeUrl);
-    expect(mockOnUpdate).toHaveBeenCalledTimes(1);
+    expect(mockOnDismiss).toHaveBeenCalledTimes(1);
   });
 
   it('should call onDismiss function when "Update Now" button is pressed', () => {
@@ -77,7 +76,8 @@ describe('UpdateModal', () => {
 
     (global as any).updateButtonOnPress();
 
-    expect(mockOnDismiss).toHaveBeenCalledTimes(1);
+    expect(Linking.openURL).toHaveBeenCalledWith(storeUrl);
+    expect(mockOnUpdate).toHaveBeenCalledTimes(1);
   });
 
   it('the background of app should appear if the property "showAppBackground" is true', () => {

@@ -41,13 +41,13 @@ export const UpdateModal: React.FC<IUpdateModal> = ({
       [
         {
           text: dismiss_button_text,
-          onPress: handleUpdate,
+          onPress: closeModal,
           isPreferred: false,
           style: 'cancel',
         },
         {
           text: update_button_text,
-          onPress: closeModal,
+          onPress: handleUpdate,
           isPreferred: true,
           style: 'default',
         },
