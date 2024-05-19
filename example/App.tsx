@@ -23,7 +23,7 @@ const App: React.FC = () => {
   return (
     <ForceUpdate
       api_key={
-        'd723422430af5a6081a95be021dc7437bb5c74ec0648ef818e4d148f928e7043'
+        '2ea8dc1570a5bfc9c77f50337495ffef776d4cedeef90e853cfb5c9d20602066'
       }
       language={'en'}
       platform={'IOS'}

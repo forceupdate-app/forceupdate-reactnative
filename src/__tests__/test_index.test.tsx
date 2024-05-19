@@ -64,7 +64,7 @@ describe('ForceUpdate', () => {
   );
 
   it(
-    'should render ErrorComponent if there is an error fetching data',
+    'should not render ErrorComponent if there is an error fetching data',
     async () => {
       const errorMessage = 'Error fetching data';
       (fetchData as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
@@ -90,7 +90,9 @@ describe('ForceUpdate', () => {
       await waitFor(
         () => {
           expect(getByText(errorMessage)).toBeTruthy();
-          expect(mockOnVersionCheckError).toHaveBeenCalledWith(errorMessage);
+          expect(mockOnVersionCheckError).not.toHaveBeenCalledWith(
+            errorMessage
+          );
         },
         { timeout: TIMEOUT }
       );

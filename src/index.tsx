@@ -4,7 +4,6 @@ import { fetchData, type ICheckVersionResponse } from './services/fetchdata';
 import ForceUpdateModal from './components/ForceUpdateModal';
 import { UpdateModal } from './components/UpdateModal';
 import { LoadingComponent } from './components/Loading';
-import ErrorComponent from './components/ErrorComponent';
 
 interface IForceUpdate {
   api_key: string;
@@ -35,7 +34,7 @@ export const ForceUpdate: React.FC<IForceUpdate> = ({
   showAppBackground = true,
   ...props
 }: IForceUpdate) => {
-  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [, setErrorMessage] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [apiResponse, setApiResponse] =
     React.useState<ICheckVersionResponse | null>(null);
@@ -97,10 +96,6 @@ export const ForceUpdate: React.FC<IForceUpdate> = ({
 
   if (isLoading) {
     return <LoadingComponent />;
-  }
-
-  if (errorMessage) {
-    return <ErrorComponent errorMessage={errorMessage} />;
   }
 
   if (apiResponse?.force_update) {
