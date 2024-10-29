@@ -30,7 +30,7 @@ A lightweight React Native package for enforcing app version updates. Ensure use
 - Callbacks for handling modal events
 - Support for multiple languages
 - Support for multiple platforms
-- A completed [SAAS](https://forceupdate.app) to manage your versions
+- A completed [SaaS](https://forceupdate.app) to manage your versions
 
 ## Creating an account
 
