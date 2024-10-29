@@ -69,7 +69,7 @@ describe('ForceUpdate', () => {
       const errorMessage = 'Error fetching data';
       (fetchData as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
 
-      const { getByText } = render(
+      const { queryByText } = render(
         <ForceUpdate
           api_key="API_KEY"
           language="en"
@@ -89,10 +89,9 @@ describe('ForceUpdate', () => {
 
       await waitFor(
         () => {
-          expect(getByText(errorMessage)).toBeTruthy();
-          expect(mockOnVersionCheckError).not.toHaveBeenCalledWith(
-            errorMessage
-          );
+          expect(queryByText(errorMessage)).toBeNull();
+          expect(mockOnVersionCheckError).toHaveBeenCalledWith(errorMessage);
+          expect(queryByText('Some text')).toBeTruthy();
         },
         { timeout: TIMEOUT }
       );
