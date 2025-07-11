@@ -1,6 +1,6 @@
 {
   "name": "reactnative-forceupdate",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A lightweight React Native package for enforcing app version updates. Ensure users always have the latest enhancements and fixes without dependencies.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
