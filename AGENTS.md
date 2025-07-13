@@ -19,5 +19,8 @@ This repository contains a React Native library (`reactnative-forceupdate`) and 
 ## Continuous Integration
 GitHub Actions (`.github/workflows/ci.yml`) run `yarn lint`, `yarn typecheck`, `yarn test` with coverage, build the library and the web example.
 
+### Running Tests
+Run `yarn test` locally to execute the Jest suite. The CI workflow installs Node 18 via `actions/setup-node` and caches `node_modules` and `.yarn/install-state.gz` (see `.github/actions/setup`). Preinstall Node 18 or use a similar cache in your own CI to avoid re‑downloading all dependencies.
+
 ## Pull Requests
 Keep pull requests focused and small. Verify that lint, typecheck and tests pass before creating the PR. Use clear commit messages in the Conventional Commit format.
